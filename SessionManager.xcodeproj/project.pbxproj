@@ -8,12 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		96DBEB5E21FE2A5000EDB64C /* SessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DBEB5C21FE2A5000EDB64C /* SessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96DBEB6921FE2B7400EDB64C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBEB6421FE2B7400EDB64C /* Extensions.swift */; };
+		96DBEB6A21FE2B7400EDB64C /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBEB6521FE2B7400EDB64C /* HTTPStatusCodes.swift */; };
+		96DBEB6B21FE2B7400EDB64C /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBEB6621FE2B7400EDB64C /* HttpRequest.swift */; };
+		96DBEB6C21FE2B7400EDB64C /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBEB6721FE2B7400EDB64C /* HTTPError.swift */; };
+		96DBEB6D21FE2B7400EDB64C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 96DBEB6821FE2B7400EDB64C /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		96DBEB5921FE2A5000EDB64C /* SessionManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SessionManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96DBEB5C21FE2A5000EDB64C /* SessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SessionManager.h; sourceTree = "<group>"; };
 		96DBEB5D21FE2A5000EDB64C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96DBEB6421FE2B7400EDB64C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		96DBEB6521FE2B7400EDB64C /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodes.swift; sourceTree = "<group>"; };
+		96DBEB6621FE2B7400EDB64C /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
+		96DBEB6721FE2B7400EDB64C /* HTTPError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
+		96DBEB6821FE2B7400EDB64C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +56,11 @@
 		96DBEB5B21FE2A5000EDB64C /* SessionManager */ = {
 			isa = PBXGroup;
 			children = (
+				96DBEB6421FE2B7400EDB64C /* Extensions.swift */,
+				96DBEB6721FE2B7400EDB64C /* HTTPError.swift */,
+				96DBEB6621FE2B7400EDB64C /* HttpRequest.swift */,
+				96DBEB6521FE2B7400EDB64C /* HTTPStatusCodes.swift */,
+				96DBEB6821FE2B7400EDB64C /* README.md */,
 				96DBEB5C21FE2A5000EDB64C /* SessionManager.h */,
 				96DBEB5D21FE2A5000EDB64C /* Info.plist */,
 			);
@@ -95,6 +110,7 @@
 				TargetAttributes = {
 					96DBEB5821FE2A5000EDB64C = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -120,6 +136,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96DBEB6D21FE2B7400EDB64C /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +147,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96DBEB6C21FE2B7400EDB64C /* HTTPError.swift in Sources */,
+				96DBEB6A21FE2B7400EDB64C /* HTTPStatusCodes.swift in Sources */,
+				96DBEB6921FE2B7400EDB64C /* Extensions.swift in Sources */,
+				96DBEB6B21FE2B7400EDB64C /* HttpRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,9 +282,11 @@
 		96DBEB6221FE2A5000EDB64C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -276,7 +299,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ankush-bhatia.SessionManager";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -285,9 +310,11 @@
 		96DBEB6321FE2A5000EDB64C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -300,6 +327,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ankush-bhatia.SessionManager";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
