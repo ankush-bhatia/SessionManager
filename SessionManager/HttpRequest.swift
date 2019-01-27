@@ -778,11 +778,11 @@ extension HTTPRequest: URLSessionDelegate, URLSessionDataDelegate {
     
 }
 
-extension AppDelegate {
-    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
-        self.backgroundSessionCompletionHandler = completionHandler
-    }
-}
+//extension AppDelegate {
+//    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+//        self.backgroundSessionCompletionHandler = completionHandler
+//    }
+//}
 
 //extension Data {
 //    mutating func appendString(string: String) {
