@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum HttpStatusCode: Int {
+public enum HttpStatusCode: Int {
     case success
     case badRequest
     case validationError

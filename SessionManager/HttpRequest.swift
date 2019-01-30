@@ -17,21 +17,21 @@ import UIKit
     @objc optional func didUploadFileInBackground(withFileUrl url: URL)
 }
 
-typealias HTTPResult = ((_ data: Data?, _ error: NetworkError?) -> Void)
+public typealias HTTPResult = ((_ data: Data?, _ error: NetworkError?) -> Void)
 
-struct File {
+public struct File {
     private(set) var name: String
     private(set) var type: MimeType
     private(set) var filePath: String?
     private(set) var fileData: Data?
     
-    init(name: String, type: MimeType, filePath: String) {
+    public init(name: String, type: MimeType, filePath: String) {
         self.name = name
         self.type = type
         self.filePath = filePath
     }
     
-    init(name: String, type: MimeType, fileData: Data) {
+    public init(name: String, type: MimeType, fileData: Data) {
         self.name = name
         self.type = type
         self.fileData = fileData
@@ -53,12 +53,12 @@ class Upload {
 }
 
 
-enum MimeType: String {
+public enum MimeType: String {
     case jpegImage = "image/jpg"
     case pdf = "pdf"
 }
 
-enum Method: String {
+public enum Method: String {
     case get = "GET"
     case post = "POST"
     case put = "PUT"
@@ -70,7 +70,7 @@ enum Method: String {
     case trace = "TRACE"
 }
 
-enum Config {
+public enum Config {
     case `default` // Default configuration.
     case memory // Does not save cookies and data to disk.
     case background(String) // Lets you download and upload data in background mode.
@@ -87,7 +87,7 @@ enum Config {
     }
 }
 
-enum TaskType {
+public enum TaskType {
     case data // Get Data from server
     case upload // Upload file to server
     case download // Download file from the server
@@ -96,14 +96,14 @@ enum TaskType {
 class HTTPRequest: NSObject {
     var timeout: Double = 30.0
     var config: Config = .default
-    var taskType: TaskType = .data
+    public var taskType: TaskType = .data
     private var dataTask: URLSessionDataTask?
     var requestUrl: URL?
     private var session: URLSession?
     private var files: [File]?
     private var activeDownloads: [URL: Download] = [:]
     private var activeUploads: [URL: Upload] = [:]
-    weak var delegate: HTTPRequestDelegate?
+    var delegate: HTTPRequestDelegate?
     
     // MARK: Intialisers
     init(taskType: TaskType, config: Config, files: [File]?) {
@@ -664,7 +664,7 @@ extension HTTPRequest: URLSessionDownloadDelegate {
         }
     }
     
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         guard let downloadUrl = downloadTask.originalRequest?.url else {
             return
         }
@@ -674,7 +674,7 @@ extension HTTPRequest: URLSessionDownloadDelegate {
         self.delegate?.didDownload?(fileWithProgress: download!.progress)
     }
     
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didResumeAtOffset fileOffset: Int64, expectedTotalBytes: Int64) {
+    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didResumeAtOffset fileOffset: Int64, expectedTotalBytes: Int64) {
         
     }
 }
@@ -683,12 +683,12 @@ extension HTTPRequest: URLSessionDownloadDelegate {
 extension HTTPRequest: URLSessionDelegate, URLSessionDataDelegate {
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         // Need to call this completion handler on the main thread because this function might be called in another thread as stated in the apple documentation of URLSession.
-        DispatchQueue.main.async {
-        if let appdelegate = UIApplication.shared.delegate as? AppDelegate, let completionHandler = appdelegate.backgroundSessionCompletionHandler {
-            appdelegate.backgroundSessionCompletionHandler = nil
-                completionHandler()
-            }
-        }
+//        DispatchQueue.main.async {
+//            if let appdelegate = UIApplication.shared.delegate as? AppDelegate, let completionHandler = appdelegate.backgroundSessionCompletionHandler {
+//                appdelegate.backgroundSessionCompletionHandler = nil
+//                completionHandler()
+//            }
+//        }
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
@@ -727,19 +727,19 @@ extension HTTPRequest: URLSessionDelegate, URLSessionDataDelegate {
     }
     
     // If the initial handshake with the server requires a connection-level challenge (such as an SSL client certificate).
-//    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-//    }
-//
-//    // If the response indicates that authentication is required.
-//    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-//    }
-//
-//    // If task data is provided from a stream.
-//    func urlSession(_ session: URLSession, task: URLSessionTask, needNewBodyStream completionHandler: @escaping (InputStream?) -> Void) {
-//
-//    }
-//
-//    // Reports the progress of the upload.
+    //    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    //    }
+    //
+    //    // If the response indicates that authentication is required.
+    //    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    //    }
+    //
+    //    // If task data is provided from a stream.
+    //    func urlSession(_ session: URLSession, task: URLSessionTask, needNewBodyStream completionHandler: @escaping (InputStream?) -> Void) {
+    //
+    //    }
+    //
+    //    // Reports the progress of the upload.
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         guard taskType == .upload else {
             return
@@ -759,22 +759,22 @@ extension HTTPRequest: URLSessionDelegate, URLSessionDataDelegate {
     
     // Returns the response of the api.( Helpful in case of upload task )
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-//        guard let uploadUrl = dataTask.currentRequest?.url else {
-//            return
-//        }
-//        let upload = activeUploads[uploadUrl]
-//        print("Recievedfjnfksjdflksjdf")
+        //        guard let uploadUrl = dataTask.currentRequest?.url else {
+        //            return
+        //        }
+        //        let upload = activeUploads[uploadUrl]
+        //        print("Recievedfjnfksjdflksjdf")
         self.delegate?.didReceiveResponse?(forUploadWith: response)
         completionHandler(.allow)
         self.invalidateSession()
     }
     
-//
-//    // If the response is Http redirection.
-//    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
-//        
-//    }
-//
+    //
+    //    // If the response is Http redirection.
+    //    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
+    //
+    //    }
+    //
     
 }
 

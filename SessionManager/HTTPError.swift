@@ -9,10 +9,10 @@
 import UIKit
 
 
-struct NetworkError: LocalizedError {
-    var title: String
-    var errorCode: HttpStatusCode
-    var error: String
+public struct NetworkError: LocalizedError {
+    public var title: String
+    public var errorCode: HttpStatusCode
+    public var error: String
     
     
     init(title: String, errorCode: HttpStatusCode, error: ApiError) {
@@ -32,7 +32,7 @@ struct NetworkError: LocalizedError {
     }
 }
 
-@objc enum ApiError: Int, LocalizedError {
+@objc public enum ApiError: Int, LocalizedError {
     
     case `default`
     case invalidURL
@@ -90,7 +90,7 @@ struct NetworkError: LocalizedError {
     case noInternetConnection
     
     /// Error message to be shown to user.
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case .noInternetConnection:
             return "The Internet connection appears to be offline. Please check your internet connection."
@@ -128,7 +128,7 @@ struct NetworkError: LocalizedError {
     
     
     /// Reason for the failure for development purpose only.
-    var failureReason: String? {
+    public var failureReason: String? {
         switch self {
         case .invalidURL:
             return "No such url exists on the server. Please check again the url of the server api."
@@ -243,7 +243,7 @@ struct NetworkError: LocalizedError {
     
     
     /// Recovery suggestions for the user.
-    var recoverySuggestion: String? {
+    public var recoverySuggestion: String? {
         switch self {
         case .invalidURL:
             return "Please try again later."
@@ -262,7 +262,7 @@ struct NetworkError: LocalizedError {
     
     
     /// Helper for the users in case user access help section from the application.
-    var helpAnchor: String? {
+    public var helpAnchor: String? {
         switch self {
         case .invalidURL:
             return "Please contact admin."
@@ -302,7 +302,7 @@ struct NetworkError: LocalizedError {
 }
 
 
-enum HTTPError: LocalizedError {
+public enum HTTPError: LocalizedError {
     case handler
     case multipartHandler
     case urlEncodingFailed
@@ -311,13 +311,13 @@ enum HTTPError: LocalizedError {
     
     
     /// Error message to be shown to user.
-    var errorDescription: String? {
+    public var errorDescription: String? {
         return "Something went wrong. Please try again later."
     }
     
     
     /// Reason for the failure for development purpose only.
-    var failureReason: String? {
+    public var failureReason: String? {
         switch self {
         case .handler:
             return "Api handler has failed unexpectedly."
@@ -334,13 +334,13 @@ enum HTTPError: LocalizedError {
     
     
     /// Recovery suggestions for the user.
-    var recoverySuggestion: String? {
+    public var recoverySuggestion: String? {
         return "Please try again later."
     }
     
     
     /// Helper for the users in case user access help section from the application.
-    var helpAnchor: String? {
+    public var helpAnchor: String? {
         switch self {
         case .requestURLNil:
             return "Add cookie after creating request."
