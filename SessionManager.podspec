@@ -30,7 +30,7 @@ s.framework = "UIKit"
 s.source_files = "SessionManager/**/*.{swift}"
 
 # 9
-s.resources = "SessionManager/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
+# s.resources = "SessionManager/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
 
 # 10
 s.swift_version = "4.2"
