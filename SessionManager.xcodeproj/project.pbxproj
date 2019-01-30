@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96023F872201A7F00090F92B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96DBEB5D21FE2A5000EDB64C /* Info.plist */; };
 		96DBEB5E21FE2A5000EDB64C /* SessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DBEB5C21FE2A5000EDB64C /* SessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96DBEB6921FE2B7400EDB64C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBEB6421FE2B7400EDB64C /* Extensions.swift */; };
 		96DBEB6A21FE2B7400EDB64C /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBEB6521FE2B7400EDB64C /* HTTPStatusCodes.swift */; };
@@ -136,6 +137,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96023F872201A7F00090F92B /* Info.plist in Resources */,
 				96DBEB6D21FE2B7400EDB64C /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
