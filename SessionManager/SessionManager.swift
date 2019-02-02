@@ -24,7 +24,7 @@ public class SessionManager: NSObject {
     // MARK: Intialisers
     public init(taskType: TaskType, config: Config, files: [File]?) {
         super.init()
-        self.request = HTTPRequest(taskType: taskType, config: config)
+        self.request = HTTPRequest(taskType: taskType, config: config, files: files)
         self.request?.delegate = self
     }
     
@@ -79,6 +79,52 @@ extension SessionManager {
     public func config(timeout: Double) -> SessionManager {
         self.request = self.request!.config(timeout: timeout)
         return self
+    }
+}
+
+// Download APIS
+extension SessionManager {
+    /// Resumes the download process.
+    ///
+    /// - Parameter url: Download url.
+    public func resumeDownload() {
+        guard let url = self.request?.requestUrl else {
+            return
+        }
+        self.request?.resumeDownload(url: url)
+    }
+    
+    /// Cancels the download process.
+    ///
+    /// - Parameter url: Download url.
+    public func cancelDownload() {
+        guard let url = self.request?.requestUrl else {
+            return
+        }
+        self.request?.cancelDownload(url: url)
+    }
+    
+    /// Pauses the download
+    ///
+    /// - Parameter url: Download url.
+    public func pauseDownload() {
+        guard let url = self.request?.requestUrl else {
+            return
+        }
+        self.request?.pauseDownload(url: url)
+    }
+}
+
+// Upload APIS
+extension SessionManager {
+    /// Suspends the upload process.
+    public func pauseUpload() {
+        self.request?.pauseUpload()
+    }
+    
+    /// Cancels the upload process.
+    public func cancelUpload() {
+        self.request?.cancelUpload()
     }
 }
 

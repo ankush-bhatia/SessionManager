@@ -373,6 +373,7 @@ class HTTPRequest: NSObject {
         if let shouldWaitForConnectivity = shouldWaitForConnectivity {
             config.waitsForConnectivity = shouldWaitForConnectivity
         }
+        config.sharedContainerIdentifier = Bundle.main.bundleIdentifier
     }
     
     
@@ -646,7 +647,7 @@ class HTTPRequest: NSObject {
 
 extension HTTPRequest: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        guard let downloadUrl = downloadTask.originalRequest?.url else {
+        guard let downloadUrl = self.requestUrl else {
             return
         }
         //let download = activeDownloads[downloadUrl]
@@ -665,7 +666,7 @@ extension HTTPRequest: URLSessionDownloadDelegate {
     }
     
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-        guard let downloadUrl = downloadTask.originalRequest?.url else {
+        guard let downloadUrl = self.requestUrl else {
             return
         }
         let download = activeDownloads[downloadUrl]
@@ -681,6 +682,10 @@ extension HTTPRequest: URLSessionDownloadDelegate {
 
 
 extension HTTPRequest: URLSessionDelegate, URLSessionDataDelegate {
+    func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
+        print(error)
+    }
+    
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         // Need to call this completion handler on the main thread because this function might be called in another thread as stated in the apple documentation of URLSession.
 //        DispatchQueue.main.async {
@@ -706,6 +711,7 @@ extension HTTPRequest: URLSessionDelegate, URLSessionDataDelegate {
             // User cancelled the operation
             let apiError = ApiError.error(forCode: statusCode)
             self.delegate?.didReceiveError(error: apiError)
+            return
         default:
             break
         }
@@ -747,13 +753,15 @@ extension HTTPRequest: URLSessionDelegate, URLSessionDataDelegate {
         guard let uploadUrl = task.currentRequest?.url else {
             return
         }
-        let upload = activeUploads[uploadUrl]
-        upload?.progress = Float(totalBytesSent)/Float(totalBytesExpectedToSend)
+        guard let upload = activeUploads[uploadUrl] else {
+            return
+        }
+        upload.progress = Float(totalBytesSent)/Float(totalBytesExpectedToSend)
         //let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToSend, countStyle: .file)
-        if upload!.progress == 1.0 {
-            self.delegate?.didUpload?(fileWithProgress: upload!.progress, fileData: upload!.file!.fileData!)
+        if upload.progress == 1.0 {
+            self.delegate?.didUpload?(fileWithProgress: upload.progress, fileData: upload.file!.fileData!)
         } else {
-            self.delegate?.didUpload?(fileWithProgress: upload!.progress, fileData: nil)
+            self.delegate?.didUpload?(fileWithProgress: upload.progress, fileData: nil)
         }
     }
     
