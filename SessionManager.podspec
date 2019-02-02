@@ -8,7 +8,7 @@ s.summary = "SessionManager lets a user to create http requests to the server."
 s.requires_arc = true
 
 # 2
-s.version = "1.0.0"
+s.version = "1.0.2"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE" }
