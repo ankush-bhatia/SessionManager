@@ -27,7 +27,7 @@ s.source = { :git => "https://github.com/ankush-bhatia/SessionManager.git",
 s.framework = "UIKit"
 
 # 8
-s.source_files = "SessionManager/**/*.{swift}"
+s.source_files = "SessionManager/**/*.{swift}", "SessionManager/SessionManager/info.plist"
 
 # 9
 # s.resources = "SessionManager/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
