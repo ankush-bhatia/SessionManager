@@ -4,11 +4,15 @@ Pod::Spec.new do |s|
 s.platform = :ios
 s.ios.deployment_target = '12.0'
 s.name = "SessionManager"
-s.summary = "SessionManager lets a user to create http requests to the server."
+s.summary = "Light weight http request handling."
+s.description = <<-DESC
+SessionManager lets a user to create http requests to the server. It is based on URLSession framework from Apple. It handles all type of error code that can come from server while making calls to the server.
+DESC
 s.requires_arc = true
+s.social_media_url = 'https://twitter.com/AnkushB04730061'
 
 # 2
-s.version = "1.0.2"
+s.version = "1.0.3"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE" }
