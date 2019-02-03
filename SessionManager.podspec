@@ -9,7 +9,7 @@ s.description = <<-DESC
 SessionManager lets a user to create http requests to the server. It is based on URLSession framework from Apple. It handles all type of error code that can come from server while making calls to the server.
 DESC
 s.requires_arc = true
-s.social_media_url = 'https://twitter.com/AnkushB04730061'
+s.social_media_url = 'https://twitter.com/ankush1419'
 
 # 2
 s.version = "1.0.3"
