@@ -22,13 +22,12 @@
 
 Add the following line to your Podfile:
 
-```pod 'SessionManager', '~> 1.0.2'
+```
+pod 'SessionManager', '~> 1.0.2'
 ```
 
--SessionManager is available on Cocoapods.
--Current version compatible with Swift 4.1.
-
-#### [CocoaPods](https://cocoapods.org):
+- SessionManager is available on [CocoaPods](https://cocoapods.org).
+- Current version compatible with Swift 4.1.
 
 
 ## Usage:
@@ -61,44 +60,45 @@ let file: File = File(name: documentName, type: MimeType, fileData: Data)
 // Turning on activity indicator.
 UIApplication.shared.isNetworkActivityIndicatorVisible = true
 do {
-try SessionManager(taskType: .data, config: .default).handleMultipart(withRequestUrl: url, httpMethod: .post, params: params, files: [file], completion: { (data, error) in
-DispatchQueue.main.async {
-// Turning off activity indicator.
-UIApplication.shared.isNetworkActivityIndicatorVisible = false
-}
-if let networkError = error {
-switch networkError.errorCode {
-case .validationError:
-break
-case .noInternetConnection:
-break
-default:
-DispatchQueue.main.async {
-self.showAlert(message: networkError.error)
-}
-return
-}
-}
-// No Error Found.
-do {
-let json = try JSONSerialization.jsonObject(with: response, options:    JSONSerialization.ReadingOptions.mutableContainers)
-print(json)
-} catch let error {
-// Handle Error
-print(error)
-}
-})
+    try SessionManager(taskType: .data, config: .default).handleMultipart(withRequestUrl: url, httpMethod: .post, params:     params, files: [file], completion: { (data, error) in
+        DispatchQueue.main.async {
+            // Turning off activity indicator.
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
+        if let networkError = error {
+            switch networkError.errorCode {
+            case .validationError:
+                break
+            case .noInternetConnection:
+                break
+            default:
+                DispatchQueue.main.async {
+                    self.showAlert(message: networkError.error)
+                }
+                return
+            }
+        }
+        // No Error Found.
+        do {
+            let json = try JSONSerialization.jsonObject(with: response, options:          JSONSerialization.ReadingOptions.mutableContainers)
+            print(json)
+        } catch let error {
+            // Handle Error
+            print(error)
+        }
+    })
 } catch HTTPError.handler {
-print(HTTPError.handler.failureReason ?? "")
+    print(HTTPError.handler.failureReason ?? "")
 } catch HTTPError.multipartHandler {
-print(HTTPError.multipartHandler.failureReason ?? "")
+    print(HTTPError.multipartHandler.failureReason ?? "")
 } catch HTTPError.urlCreationFailure {
-print(HTTPError.urlCreationFailure.failureReason ?? "")
+    print(HTTPError.urlCreationFailure.failureReason ?? "")
 } catch HTTPError.urlEncodingFailed {
-print(HTTPError.urlEncodingFailed.failureReason ?? "")
+    print(HTTPError.urlEncodingFailed.failureReason ?? "")
 } catch let error {
-print(error.localizedDescription)
+    print(error.localizedDescription)
 }
+
 ```
 
 ### Normal Api Request:
@@ -107,42 +107,42 @@ print(error.localizedDescription)
 ```sh 
 let parameters: [String: Any] = ["demo": "done"]
 do {
-try SessionManager(taskType: .data, config: .default).config(timeout: 5.0).handle(withRequestUrl: url, httpMethod: .get, params: nil, completion: { (data, error) in
-DispatchQueue.main.async {
-// Turning off activity indicator.
-UIApplication.shared.isNetworkActivityIndicatorVisible = false
-}
-if let networkError = error {
-switch networkError.errorCode {
-case .validationError:
-break
-case .noInternetConnection:
-break
-default:
-DispatchQueue.main.async {
-self.showAlert(message: networkError.error)
-}
-return
-}
-}
-// No error found
-do {
-let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
-print(json)
-} catch let error {
-// Handle Error
-print(error)
-}
-})
-// Handle Error from Api
+    try SessionManager(taskType: .data, config: .default).config(timeout: 5.0).handle(withRequestUrl: url, httpMethod: .get, params: nil, completion: { (data, error) in
+        DispatchQueue.main.async {
+            // Turning off activity indicator.
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
+        if let networkError = error {
+            switch networkError.errorCode {
+            case .validationError:
+                break
+            case .noInternetConnection:
+                break
+            default:
+                DispatchQueue.main.async {
+                    self.showAlert(message: networkError.error)
+                }
+                return
+            }
+        }
+        // No error found
+        do {
+            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+            print(json)
+        } catch let error {
+            // Handle Error
+            print(error)
+        }
+    })
+    // Handle Error from Api
 } catch HTTPError.handler {
-print(HTTPError.handler.failureReason ?? "")
+    print(HTTPError.handler.failureReason ?? "")
 } catch HTTPError.urlCreationFailure {
-print(HTTPError.urlCreationFailure.failureReason ?? "")
+    print(HTTPError.urlCreationFailure.failureReason ?? "")
 } catch HTTPError.urlEncodingFailed {
-print(HTTPError.urlEncodingFailed.failureReason ?? "")
+    print(HTTPError.urlEncodingFailed.failureReason ?? "")
 } catch let error {
-print(error)
+    print(error)
 }
 
 ```
