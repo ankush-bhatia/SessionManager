@@ -23,7 +23,7 @@
 Add the following line to your Podfile:
 
 ```
-pod 'SessionManager', '~> 1.0.2'
+pod 'SessionManager', '~> 1.0.4'
 ```
 
 - SessionManager is available on [CocoaPods](https://cocoapods.org).
