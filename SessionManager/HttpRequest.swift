@@ -682,9 +682,9 @@ extension HTTPRequest: URLSessionDownloadDelegate {
 
 
 extension HTTPRequest: URLSessionDelegate, URLSessionDataDelegate {
-    func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
-        print(error)
-    }
+//    func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
+//        print(error)
+//    }
     
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         // Need to call this completion handler on the main thread because this function might be called in another thread as stated in the apple documentation of URLSession.
