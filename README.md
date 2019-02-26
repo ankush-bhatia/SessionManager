@@ -20,15 +20,21 @@
 
 ## Installation
 
-Add the following line to your Podfile:
+- SessionManager is available on [CocoaPods](https://cocoapods.org).
+- SessionManager is available on [Carthage](https://github.com/Carthage/Carthage).
+- Current version compatible with Swift 4.1.
 
+#### Cocoapods
+Add the following line to your Podfile:
 ```
 pod 'SessionManager', '~> 1.0.4'
 ```
 
-- SessionManager is available on [CocoaPods](https://cocoapods.org).
-- Current version compatible with Swift 4.1.
-
+#### Carthage
+Add the following line to your Cartfile:
+```
+github "ankush-bhatia/SessionManager" ~> 1.0.5
+```
 
 ## Usage:
 
