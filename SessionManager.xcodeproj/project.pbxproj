@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9680CCEC22258C4D00F6131F /* SessionManager.h in Sources */ = {isa = PBXBuildFile; fileRef = 96DBEB5C21FE2A5000EDB64C /* SessionManager.h */; };
 		96DBEB5E21FE2A5000EDB64C /* SessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DBEB5C21FE2A5000EDB64C /* SessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96DBEB6921FE2B7400EDB64C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBEB6421FE2B7400EDB64C /* Extensions.swift */; };
 		96DBEB6A21FE2B7400EDB64C /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBEB6521FE2B7400EDB64C /* HTTPStatusCodes.swift */; };
@@ -145,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9680CCEC22258C4D00F6131F /* SessionManager.h in Sources */,
 				96DBEB6C21FE2B7400EDB64C /* HTTPError.swift in Sources */,
 				96DBEB6A21FE2B7400EDB64C /* HTTPStatusCodes.swift in Sources */,
 				96DBEB6921FE2B7400EDB64C /* Extensions.swift in Sources */,
