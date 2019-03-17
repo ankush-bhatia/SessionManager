@@ -1,11 +1,7 @@
 language: swift
+os: osx
 osx_image: xcode10.1
+xcode_project: SessionManager.xcodeproj
+xcode_scheme: SessionManager
+xcode_destination: platform=iOS Simulator,OS=11.0,name=iPhone X
 
-cache: bundler
-
-matrix:
-include:
-- name: iOS | Swift 4.2
-env: LANE=test_ci SCHEME=SessionManager SWIFT_VERSION=4.2
-- name: iOS | Swift 4.0
-env: LANE=test_ci SCHEME=SessionManager SWIFT_VERSION=4.0
