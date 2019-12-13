@@ -1,28 +1,27 @@
 # SessionManager
 
 ## Description:
-- It is a light weight networking library which can be used to make http requests to the server.
+- Light weight networking library which can be used to make http requests to the server.
 - This library uses Apple's URLSession framework to handle network calls.
-
-## If you like SessionManager, don't forget to give ★ at the top right of this page. Any kind of suggestions/contributions are welcome.
 
 ## Features
 
 - [x] Make http calls with all types of error codes handling.
-- [x] Cocoapods Integration.
+- [x] Available on Cocoapods.
+- [x] Available on Carthage. 
 - [x] Error handling implemented.
-- [x] Different API for downloading and uploading files.
+- [x] Different APIs for downloading and uploading files.
 
 ## Requirements
 
-- iOS 10.0+
+- iOS 11.0+
 - Xcode 10+
 
 ## Installation
 
 - SessionManager is available on [CocoaPods](https://cocoapods.org).
 - SessionManager is available on [Carthage](https://github.com/Carthage/Carthage).
-- Current version compatible with Swift 4.1.
+- Current version compatible with Swift 4.1, 5.0.
 
 #### Cocoapods
 Add the following line to your Podfile:
@@ -161,10 +160,10 @@ Any contribution towards making it a better library is most welcome.
 
 
 ## Authors
-[***Ankush Bhatia**](https://github.com/ankush-bhatia)
+[**Ankush Bhatia**](https://github.com/ankush-bhatia)
 
 ## License
-This project is licensed under the MIT License -  [LICENSE](LICENSE).
+This project is licensed under the MIT License -  [LICENSE](LICENSE). Please make sure to include license file under your project directory as per MIT guidelines.
 
 
 

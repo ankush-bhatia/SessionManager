@@ -1,7 +1,11 @@
 language: swift
 os: osx
-osx_image: xcode10.1
+osx_image: xcode11.1
 xcode_project: SessionManager.xcodeproj
 xcode_scheme: SessionManager
-xcode_destination: platform=iOS Simulator,OS=11.0,name=iPhone X
+branches:
+  only:
+  - master
+  - fix/travis
+xcode_destination: platform=iOS Simulator, OS=13.1, name=iPhone 8
 
