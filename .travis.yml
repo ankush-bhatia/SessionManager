@@ -17,6 +17,9 @@ branches:
   only:
   - master
   - fix/travis
-
-xcode_destination: platform=iOS Simulator, OS=13.1, name=iPhone 8
+  
+script:
+- set -o -pipefail
+- xcodebuild clean build -project "$TRAVIS_XCODE_PROJECT"  -scheme "$TRAVIS_XCODE_SCHEME" | xcpretty
+- xcodebuild test -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "name=iPhone 8" -enableCodeCoverage NO | xcpretty
 
