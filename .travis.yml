@@ -1,11 +1,22 @@
 language: swift
+
 os: osx
 osx_image: xcode11.1
+
 xcode_project: SessionManager.xcodeproj
 xcode_scheme: SessionManager
+
+before_install:
+- env
+- xcodebuild -version
+- xcodebuild -showsdks
+- xcpretty --version
+- xcrun instruments -w 'iPhone 8' || sleep 15
+
 branches:
   only:
   - master
   - fix/travis
+
 xcode_destination: platform=iOS Simulator, OS=13.1, name=iPhone 8
 
